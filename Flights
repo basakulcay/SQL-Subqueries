@@ -22,3 +22,9 @@ SELECT dep_month,dep_day_of_week,dep_date,avg(distance) as distance_ave from fli
 group by 1,2,3) a
 group by 1,2
 ;
+
+--Find names and show total sold qty--  
+Select Name,
+(Select SUM(QuantitySold) from tblProductSales where ProductId = tblProducts.Id) as TotalQuantity
+from tblProducts
+order by Name;
