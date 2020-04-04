@@ -1,3 +1,4 @@
+## NonCorrelated 
 --Find flight information about flights where the Federal Aviation Administration region (faa_region) is the Southern region (ASO). 
 
 SELECT * 
@@ -7,7 +8,14 @@ WHERE origin in (
     FROM airports 
     WHERE faa_region = 'ASO');
     
-    
+--Find IDs that are not in product sales--    
+
+SELECT id, name, description
+FROM tblProducts
+WHERE Id not in 
+(SELECT Distinct ProductId FROM tblProductSales);
+
+## Correlated 
 --Find flight information about flights where the Federal Aviation Administration region (faa_region) is the Southern region (ASO).     
 SELECT a.dep_month,a.dep_day_of_week,avg(a.distance_ave) as average_distance from (
 SELECT dep_month,dep_day_of_week,dep_date,avg(distance) as distance_ave from flights
